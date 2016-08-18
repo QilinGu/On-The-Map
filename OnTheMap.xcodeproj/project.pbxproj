@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C4232AC21D64AD5C00A0E92D /* UserPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232AC11D64AD5C00A0E92D /* UserPins.swift */; };
+		C4232AC41D6572A800A0E92D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232AC31D6572A800A0E92D /* Reachability.swift */; };
+		C4232AC61D65AD5300A0E92D /* StudentPins.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232AC51D65AD5300A0E92D /* StudentPins.swift */; };
+		C4232AC81D65B69700A0E92D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232AC71D65B69700A0E92D /* MapViewController.swift */; };
+		C4232ACA1D65B86000A0E92D /* PostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232AC91D65B86000A0E92D /* PostingViewController.swift */; };
+		C4232ACC1D65BAD900A0E92D /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232ACB1D65BAD900A0E92D /* CollectionViewController.swift */; };
 		C497A5EC1C303BB7001CB47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C497A5EB1C303BB7001CB47B /* AppDelegate.swift */; };
 		C497A5EE1C303BB7001CB47B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C497A5ED1C303BB7001CB47B /* LoginViewController.swift */; };
 		C497A5F11C303BB7001CB47B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C497A5EF1C303BB7001CB47B /* Main.storyboard */; };
@@ -35,7 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C4232AC11D64AD5C00A0E92D /* UserPins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPins.swift; sourceTree = "<group>"; };
+		C4232AC31D6572A800A0E92D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		C4232AC51D65AD5300A0E92D /* StudentPins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentPins.swift; sourceTree = "<group>"; };
+		C4232AC71D65B69700A0E92D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		C4232AC91D65B86000A0E92D /* PostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostingViewController.swift; sourceTree = "<group>"; };
+		C4232ACB1D65BAD900A0E92D /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		C497A5E61C303BB6001CB47B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C497A5EA1C303BB6001CB47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C497A5EB1C303BB7001CB47B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,7 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				C497A64B1C334DF7001CB47B /* StudentInformation.swift */,
-				C4232AC11D64AD5C00A0E92D /* UserPins.swift */,
+				C4232AC51D65AD5300A0E92D /* StudentPins.swift */,
+				C4232AC31D6572A800A0E92D /* Reachability.swift */,
 				C497A6431C32C938001CB47B /* Clients */,
 			);
 			name = Model;
@@ -154,6 +163,9 @@
 			children = (
 				C497A5ED1C303BB7001CB47B /* LoginViewController.swift */,
 				C4B41FCB1D60AACF009F981C /* TableViewController.swift */,
+				C4232AC71D65B69700A0E92D /* MapViewController.swift */,
+				C4232AC91D65B86000A0E92D /* PostingViewController.swift */,
+				C4232ACB1D65BAD900A0E92D /* CollectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -290,11 +302,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C497A6421C321EDA001CB47B /* ParseConvenience.swift in Sources */,
+				C4232ACA1D65B86000A0E92D /* PostingViewController.swift in Sources */,
 				C497A6481C32C9DD001CB47B /* UdacityConstants.swift in Sources */,
+				C4232AC41D6572A800A0E92D /* Reachability.swift in Sources */,
 				C497A63E1C321659001CB47B /* ParseClient.swift in Sources */,
 				C497A64A1C32C9EF001CB47B /* UdacityConvenience.swift in Sources */,
 				C497A6461C32C9BE001CB47B /* UdacityClient.swift in Sources */,
-				C4232AC21D64AD5C00A0E92D /* UserPins.swift in Sources */,
+				C4232AC81D65B69700A0E92D /* MapViewController.swift in Sources */,
+				C4232AC61D65AD5300A0E92D /* StudentPins.swift in Sources */,
+				C4232ACC1D65BAD900A0E92D /* CollectionViewController.swift in Sources */,
 				C497A5EE1C303BB7001CB47B /* LoginViewController.swift in Sources */,
 				C497A64C1C334DF7001CB47B /* StudentInformation.swift in Sources */,
 				C497A5EC1C303BB7001CB47B /* AppDelegate.swift in Sources */,

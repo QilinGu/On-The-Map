@@ -8,39 +8,69 @@
 
 import Foundation
 
-
 extension ParseClient {
     
-    struct Constant {
+    // MARK: - Constants
+    struct Constants {
         
-        //URLs
-        static let baseURL: String = "https://api.parse.com/1/classes/"
+        // MARK: API Key
+        static let ApplicationID : String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+        static let RESTAPIKey : String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         
-        //Parse app id and key
-        static let appID: String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
-        static let apiKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let ParseURLSecure : String = "https://parse.udacity.com/parse/"
         
     }
     
+    // MARK: - Methods
     struct Methods {
         
-        static let StudentLocations = "StudentLocation"
+        // Parse
+        static let GetStudentLocations = "classes/StudentLocation"
         
     }
     
+    // MARK: - Parameter Keys
+    struct ParameterKeys {
+        
+        static let Limit = "limit"
+        static let Skip = "skip"
+        static let Order = "order"
+        static let Where = "where"
+        
+    }
+    
+    struct Error {
+        
+        static let ParseDomainError = "ParseDomainError"
+        
+    }
+    
+    // MARK: - JSON Body Keys
+    struct JSONBodyKeys {
+        
+        static let UniqueKey = "uniqueKey"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let MapString = "mapString"
+        static let MediaURL = "mediaURL"
+        static let Latitude = "latitude"
+        static let Longitude = "longitude"
+        
+    }
+    
+    // MARK: - JSON Response Keys
     struct JSONResponseKeys {
         
-        static let FirstName: String = "firstName"
-        static let LastName: String = "lastName"
-        static let Latitude: String = "latitude"
-        static let Longitude: String = "longitude"
-        static let MapString: String = "mapString"
-        static let MediaURL: String = "mediaURL"
-        static let ObjectId: String = "objectId"
-        static let UniqueKey: String = "uniqueKey"
-        static let Results: String = "results"
-        static let Error: String = "error"
-        static let UpdateAt: String = "updatedAt"
+        static let StatusMessage = "status_message"
+        static let User = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
+        static let Account = "account"
+        static let Key = "key"
+        static let Status = "status"
+        static let Results = "results"
+        static let ObjectID = "objectId"
+        static let UpdatedAt = "updatedAt"
         
     }
 }

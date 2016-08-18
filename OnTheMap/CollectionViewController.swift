@@ -1,79 +1,81 @@
 //
-//  StudentTableViewController.swift
+//  CollectionViewController.swift
 //  OnTheMap
 //
-//  Created by Qilin Gu on 8/14/16.
+//  Created by Fan Xiaoyu on 8/18/16.
 //  Copyright © 2016 SummerTree. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class TableViewController: UITableViewController {
+let reuseIdentifier = "CollectionViewCell"
+
+class CollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TableViewController.updateTable), name: "userDataUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CollectionViewController.updateCollection), name: "userDataUpdated", object: nil)
         
         /* Create and set the logout button */
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TableViewController.logoutButtonTouchUp))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CollectionViewController.logoutButtonTouchUp))
         
         /* Create and set the add pin and reload button */
         self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(named: "reload-data"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TableViewController.loadData)),
-            UIBarButtonItem(image: UIImage(named: "pin-data"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(TableViewController.informationPostingButtonTouchUp))
+            UIBarButtonItem(image: UIImage(named: "reload-data"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CollectionViewController.loadData)),
+            UIBarButtonItem(image: UIImage(named: "pin-data"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CollectionViewController.informationPostingButtonTouchUp))
         ]
         
-        if (StudentPins.sharedInstance().students.count == 0) {
+        if (UserPins.sharedInstance().users.count == 0) {
             
             loadData()
             
         } else {
             
-            updateTable()
+            updateCollection()
             
         }
+    }
+    
+    func updateCollection() {
+        self.collectionView?.reloadData()
+    }
+    
+    // MARK: UICollectionViewDataSource
+    
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return UserPins.sharedInstance().users.count
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UserLocationCollectionViewCell
+        let userInformation = UserPins.sharedInstance().users[indexPath.row]
         
-    }
-    
-    func updateTable() {
-        self.tableView.reloadData()
-    }
-    
-    // MARK: - Table View and Data Source Delegates
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StudentPins.sharedInstance().students.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath)
-        let userInformation = StudentPins.sharedInstance().students[indexPath.row]
-        
-        cell.textLabel?.text = (userInformation.firstName ?? "") + " " + (userInformation.lastName ?? "")
+        cell.label.text = String((userInformation.firstName!).characters.prefix(1)) + String((userInformation.lastName!).characters.prefix(1))
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /* show media url in default browser */
-        let userInformation = StudentPins.sharedInstance().students[indexPath.row]
+    // MARK: UICollectionViewDelegate
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let userInformation = UserPins.sharedInstance().users[indexPath.row]
         var urlString = userInformation.mediaURL ?? ""
         if !urlString.lowercaseString.hasPrefix("http") {
             urlString = "http://" + urlString
         }
         let link = NSURL(string: urlString)
-        //let link = NSURL(string: userInformation.mediaURL ?? "") ?? NSURL(string: "")
-        print(link)
+        //let link = NSURL(string: userInformation.mediaURL!)!
         UIApplication.sharedApplication().openURL(link!)
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
-    // MARK: - Logout
+    // MARK: - Navigation Bar Buttons
     
     func logoutButtonTouchUp() {
         
@@ -86,11 +88,9 @@ class TableViewController: UITableViewController {
         }
     }
     
-    // MARK: - Navigation Bar Buttons
-    
     func loadData() {
         
-        StudentPins.sharedInstance().students.removeAll(keepCapacity: true)
+        UserPins.sharedInstance().users.removeAll(keepCapacity: true)
         
         let serialQueue = dispatch_queue_create("com.udacity.onthemap.api", DISPATCH_QUEUE_SERIAL)
         
@@ -100,7 +100,7 @@ class TableViewController: UITableViewController {
                 
                 ParseClient.sharedInstance().getUsers(skip) { users, error in
                     if let users = users {
-                        StudentPins.sharedInstance().students.appendContentsOf(users)
+                        UserPins.sharedInstance().users.appendContentsOf(users)
                         
                         if users.count > 0 {
                             dispatch_async(dispatch_get_main_queue()) {
@@ -110,7 +110,7 @@ class TableViewController: UITableViewController {
                         
                     } else {
                         
-                        let title: String =  error!.localizedDescription
+                        let title: String =  ErrorTypes.localizedDescription(ErrorTypes(rawValue: error!.code)!)
                         let alertController = UIAlertController(title: title, message: error!.localizedDescription,
                                                                 preferredStyle: .Alert)
                         
@@ -158,5 +158,4 @@ class TableViewController: UITableViewController {
         }
         
     }
-    
 }

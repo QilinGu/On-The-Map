@@ -2,54 +2,49 @@
 //  StudentInformation.swift
 //  OnTheMap
 //
-//  Created by Fan Xiaoyu on 12/29/15.
+//  Created by Qilin Gu on 12/29/15.
 //  Copyright (c) 2015 SummerTree. All rights reserved.
 //
 
 import Foundation
-
-import Foundation
-import UIKit
+import MapKit
 
 struct StudentInformation {
     
-    var firstName: String!
-    var lastName: String!
-    var latitude: Double!
-    var longitude: Double!
-    var mapString: String!
-    var mediaURL: String!
-    var objectId: String!
-    var uniqueKey: String! //"996618664",
-    var updatedAt: String!
+    var firstName : String = ""
+    var lastName : String = ""
+    var latitude : Double = 0
+    var longitude : Double = 0
+    var mapString : String = ""
+    var mediaURL : String = ""
+    var objectId : String = ""
+    var uniqueKey : String = ""
+    var updatedAt : String = ""
+    var hasPosted: Bool! = false
     
     init(dictionary: [String : AnyObject]) {
         
-        firstName = dictionary[ParseClient.JSONResponseKeys.FirstName] as! String
-        lastName = dictionary[ParseClient.JSONResponseKeys.LastName] as! String
-        latitude = dictionary[ParseClient.JSONResponseKeys.Latitude] as! Double
-        longitude = dictionary[ParseClient.JSONResponseKeys.Longitude] as! Double
-        mapString = dictionary[ParseClient.JSONResponseKeys.MapString] as! String
-        mediaURL = dictionary[ParseClient.JSONResponseKeys.MediaURL] as! String
-        objectId = dictionary[ParseClient.JSONResponseKeys.ObjectId] as! String
-        uniqueKey = dictionary[ParseClient.JSONResponseKeys.UniqueKey] as! String
-        updatedAt = dictionary[ParseClient.JSONResponseKeys.UpdateAt] as! String
+        firstName = dictionary["firstName"] as! String
+        lastName = dictionary["lastName"] as! String
+        latitude = dictionary["latitude"] as! Double
+        longitude = dictionary["longitude"] as! Double
+        mapString = dictionary["mapString"] as! String
+        mediaURL = dictionary["mediaURL"] as! String
+        objectId = dictionary["objectId"] as! String
+        uniqueKey = dictionary["uniqueKey"] as! String
+        updatedAt = dictionary["updatedAt"] as! String
         
     }
     
-    static func studentLocationsFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
+    static func studentInformationFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {
         
-        var locations = [StudentInformation]()
+        var students = [StudentInformation]()
         
         for result in results {
             
-            locations.append(StudentInformation(dictionary: result))
+            students.append(StudentInformation(dictionary: result))
             
         }
-        
-        locations.sortInPlace({$0.updatedAt > $1.updatedAt})
-        return locations
+        return students
     }
-    
-    
 }

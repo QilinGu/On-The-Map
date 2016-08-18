@@ -2,19 +2,19 @@
 //  UserPins.swift
 //  OnTheMap
 //
-//  Created by Fan Xiaoyu on 8/17/16.
+//  Created by Qilin Gu on 8/18/16.
 //  Copyright © 2016 SummerTree. All rights reserved.
 //
 
 import Foundation
 
-class UserPins {
+class StudentPins {
     
-    var users: [StudentInformation] = [StudentInformation]()
+    var students: [StudentInformation] = [StudentInformation]()
     
-    class func sharedInstance() -> UserPins {
+    class func sharedInstance() -> StudentPins {
         struct Singleton {
-            static var sharedInstance = UserPins()
+            static var sharedInstance = StudentPins ()
         }
         
         return Singleton.sharedInstance
