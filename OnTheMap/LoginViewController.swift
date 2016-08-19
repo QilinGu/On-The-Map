@@ -92,7 +92,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             }
         } else {
             
-            let error = NSError(domain: "Network Error", code: ErrorTypes.Network.rawValue, userInfo: nil)
+            let error = NSError(domain: "Network Error", code: 1, userInfo: nil)
             
             dispatch_async(dispatch_get_main_queue(), {
                 self.showErrorView(error)
@@ -132,7 +132,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             let userInfo: NSDictionary = [
                 NSLocalizedDescriptionKey: "Email Empty"]
             
-            let errorObject = NSError(domain: "OTMErrorDomain", code: ErrorTypes.Client.rawValue,
+            let errorObject = NSError(domain: "OTMErrorDomain", code: 0,
                                       userInfo: userInfo as [NSObject : AnyObject])
             
             self.showErrorView(errorObject)
@@ -142,7 +142,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             let userInfo: NSDictionary = [
                 NSLocalizedDescriptionKey: "Password Empty"]
             
-            let errorObject = NSError(domain: "OTMErrorDomain", code: ErrorTypes.Client.rawValue,
+            let errorObject = NSError(domain: "OTMErrorDomain", code: 0,
                                       userInfo: userInfo as [NSObject : AnyObject])
             
             self.showErrorView(errorObject)
@@ -154,7 +154,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         }
     }
     
-    //#MARK: Facebook Login
+    // Facebook Login
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         
@@ -227,29 +227,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         
     }
     
-    //#MARK:- Error View
+    // Error View
     
     func showErrorView(error: NSError!) {
         
-        let errorType = ErrorTypes(rawValue: error.code)
+        //let errorType = error.code
         
-        var imageName: String?
-        imageName = "client"
+//        var imageName: String?
+//        imageName = "client"
         
-        switch (errorType!) {
-        case .Client:
-            imageName = "client"
-        case .Server:
-            imageName = "server"
-        case .Network:
-            imageName = "network"
-            self.retryButton.hidden = false
-        }
+//        switch (errorType) {
+//        case .Client:
+//            imageName = "client"
+//        case .Server:
+//            imageName = "server"
+//        case .Network:
+//            imageName = "network"
+//            self.retryButton.hidden = false
+//        }
         
         // the images are taken from the noun project
-        self.errorTypeImage.image = UIImage(named: imageName!)
+        //self.errorTypeImage.image = UIImage(named: imageName!)
         
-        self.errorTypeLabel.text = ErrorTypes.localizedDescription(errorType!)
+        //self.errorTypeLabel.text = error.localizedDescription(errorType!)
         self.errorMessageLabel.text = error.localizedDescription
         
         self.errorViewTopConstraint.constant = 8
@@ -332,9 +332,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     }
     
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeToKeyboardNotifications() {
