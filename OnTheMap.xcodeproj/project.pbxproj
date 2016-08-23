@@ -14,6 +14,7 @@
 		C4232ACC1D65BAD900A0E92D /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232ACB1D65BAD900A0E92D /* CollectionViewController.swift */; };
 		C4232ACF1D6726BB00A0E92D /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4232ACD1D6726BB00A0E92D /* FBSDKCoreKit.framework */; };
 		C4232AD01D6726BB00A0E92D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4232ACE1D6726BB00A0E92D /* FBSDKLoginKit.framework */; };
+		C4232AD21D689E8D00A0E92D /* StudentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4232AD11D689E8C00A0E92D /* StudentCollectionViewCell.swift */; };
 		C497A5EC1C303BB7001CB47B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C497A5EB1C303BB7001CB47B /* AppDelegate.swift */; };
 		C497A5EE1C303BB7001CB47B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C497A5ED1C303BB7001CB47B /* LoginViewController.swift */; };
 		C497A5F11C303BB7001CB47B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C497A5EF1C303BB7001CB47B /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		C4232ACB1D65BAD900A0E92D /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		C4232ACD1D6726BB00A0E92D /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		C4232ACE1D6726BB00A0E92D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		C4232AD11D689E8C00A0E92D /* StudentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C497A5E61C303BB6001CB47B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C497A5EA1C303BB6001CB47B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C497A5EB1C303BB7001CB47B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		C497A63A1C320988001CB47B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C4232AD11D689E8C00A0E92D /* StudentCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				C497A64A1C32C9EF001CB47B /* UdacityConvenience.swift in Sources */,
 				C497A6461C32C9BE001CB47B /* UdacityClient.swift in Sources */,
 				C4232AC81D65B69700A0E92D /* MapViewController.swift in Sources */,
+				C4232AD21D689E8D00A0E92D /* StudentCollectionViewCell.swift in Sources */,
 				C4232AC61D65AD5300A0E92D /* StudentPins.swift in Sources */,
 				C4232ACC1D65BAD900A0E92D /* CollectionViewController.swift in Sources */,
 				C497A5EE1C303BB7001CB47B /* LoginViewController.swift in Sources */,

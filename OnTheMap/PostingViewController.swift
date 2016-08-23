@@ -54,13 +54,11 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
         
         if let currentUser = UdacityClient.sharedInstance().currentUser {
             
-            if let mapString = currentUser.mapString {
-                self.locationTextField.text = mapString
-            }
+            let mapString = currentUser.mapString
+            self.locationTextField.text = mapString
             
-            if let mediaURL = currentUser.mediaURL {
-                self.linkTextField.text = mediaURL
-            }
+            let mediaURL = currentUser.mediaURL
+            self.linkTextField.text = mediaURL
             
         }
     }
@@ -158,17 +156,17 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     
     func postInformationLogic() {
         var userInfo: [String : AnyObject] = [:]
-        userInfo["objectId"] = UdacityClient.sharedInstance().currentUser?.objectID
-        userInfo["uniqueKey"] = UdacityClient.sharedInstance().currentUser?.uniqueKey!
+        userInfo["objectId"] = UdacityClient.sharedInstance().currentUser?.objectId
+        userInfo["uniqueKey"] = UdacityClient.sharedInstance().currentUser?.uniqueKey
         userInfo["mapString"] = self.locationTextField.text
         userInfo["mediaURL"] = self.linkTextField.text
         userInfo["latitude"] = self.studyingLocation?.coordinate.latitude
         userInfo["longitude"] = self.studyingLocation?.coordinate.longitude
-        userInfo["firstName"] = UdacityClient.sharedInstance().currentUser?.firstName!
-        userInfo["lastName"] = UdacityClient.sharedInstance().currentUser?.lastName!
-        let user = OnTheMapUser(dictionary: userInfo)
+        userInfo["firstName"] = UdacityClient.sharedInstance().currentUser?.firstName
+        userInfo["lastName"] = UdacityClient.sharedInstance().currentUser?.lastName
+        let user = StudentInformation(dictionary: userInfo)
         
-        if UdacityClient.sharedInstance().currentUser?.objectID != nil {
+        if UdacityClient.sharedInstance().currentUser?.objectId != nil {
             
             ParseClient.sharedInstance().updateUserData(user) { (success, error) in
                 
@@ -196,7 +194,7 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
                 if success {
                     
                     UdacityClient.sharedInstance().currentUser = user
-                    UdacityClient.sharedInstance().currentUser?.objectID = objectID!
+                    UdacityClient.sharedInstance().currentUser?.objectId = objectID!
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         self.dismissViewControllerAnimated(true, completion: nil)
@@ -214,7 +212,7 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     }
     
     func displayErrorMessage(error: NSError!) {
-        let title = ErrorTypes.localizedDescription(ErrorTypes(rawValue: error.code)!)
+        let title = error!.localizedDescription
         self.alertController = UIAlertController(title: title, message: error.localizedDescription, preferredStyle: .Alert)
         let okAction = UIAlertAction(title: "OK", style: .Default) { (action) in }
         

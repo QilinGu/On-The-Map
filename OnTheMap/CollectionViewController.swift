@@ -27,7 +27,7 @@ class CollectionViewController: UICollectionViewController {
             UIBarButtonItem(image: UIImage(named: "pin-data"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CollectionViewController.informationPostingButtonTouchUp))
         ]
         
-        if (UserPins.sharedInstance().users.count == 0) {
+        if (StudentPins.sharedInstance().students.count == 0) {
             
             loadData()
             
@@ -50,14 +50,14 @@ class CollectionViewController: UICollectionViewController {
     
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserPins.sharedInstance().users.count
+        return StudentPins.sharedInstance().students.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UserLocationCollectionViewCell
-        let userInformation = UserPins.sharedInstance().users[indexPath.row]
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! StudentCollectionViewCell
+        let userInformation = StudentPins.sharedInstance().students[indexPath.row]
         
-        cell.label.text = String((userInformation.firstName!).characters.prefix(1)) + String((userInformation.lastName!).characters.prefix(1))
+        cell.label.text = String((userInformation.firstName).characters.prefix(1)) + String((userInformation.lastName).characters.prefix(1))
         
         return cell
     }
@@ -65,7 +65,7 @@ class CollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let userInformation = UserPins.sharedInstance().users[indexPath.row]
+        let userInformation = StudentPins.sharedInstance().students[indexPath.row]
         var urlString = userInformation.mediaURL ?? ""
         if !urlString.lowercaseString.hasPrefix("http") {
             urlString = "http://" + urlString
@@ -90,7 +90,7 @@ class CollectionViewController: UICollectionViewController {
     
     func loadData() {
         
-        UserPins.sharedInstance().users.removeAll(keepCapacity: true)
+        StudentPins.sharedInstance().students.removeAll(keepCapacity: true)
         
         let serialQueue = dispatch_queue_create("com.udacity.onthemap.api", DISPATCH_QUEUE_SERIAL)
         
@@ -100,7 +100,7 @@ class CollectionViewController: UICollectionViewController {
                 
                 ParseClient.sharedInstance().getUsers(skip) { users, error in
                     if let users = users {
-                        UserPins.sharedInstance().users.appendContentsOf(users)
+                        StudentPins.sharedInstance().students.appendContentsOf(users)
                         
                         if users.count > 0 {
                             dispatch_async(dispatch_get_main_queue()) {
@@ -110,7 +110,7 @@ class CollectionViewController: UICollectionViewController {
                         
                     } else {
                         
-                        let title: String =  ErrorTypes.localizedDescription(ErrorTypes(rawValue: error!.code)!)
+                        let title: String =  "Connection Error"
                         let alertController = UIAlertController(title: title, message: error!.localizedDescription,
                                                                 preferredStyle: .Alert)
                         
